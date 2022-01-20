@@ -17,3 +17,6 @@ def load_behaviour(data_dir: Path, session: str) -> pd.DataFrame:
 def load_traces(data_dir: Path, session: str) -> pd.DataFrame:
     return pd.read_parquet(data_dir / f"{session}-traces.parquet.gzip")
 
+
+def load_freeze(data_dir: Path, session: str) -> pd.DataFrame:
+    return pd.read_parquet(data_dir / f"{session}-freeze.parquet.gzip")

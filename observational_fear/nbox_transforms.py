@@ -104,8 +104,8 @@ def align_to_data_by(
     df = get_closest_event_idx(
         df_data=df,
         df_events=df_events,
-        time_before_event=time_before_event,
-        max_latency=time_after_event,
+        time_before=time_before_event,
+        time_after=time_after_event,
         df_data_group_colname=df_data_group_col,
         df_events_group_colname=df_events_group_colname,
         df_events_timestamp_col=df_events_timestamp_col,

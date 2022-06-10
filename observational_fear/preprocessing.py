@@ -2,6 +2,7 @@ from dataclasses import dataclass
 from typing import Tuple, List
 import numpy as np
 from binit.bin import which_bin_idx
+from observational_fear import load
 
 
 @dataclass
@@ -54,3 +55,18 @@ def get_blocknames_trialnumber(
     trial_number = _get_trail(block_number, num_blocks_per_trial)
     block_names = np.array(list(blocks[idx].name for idx in block_number.astype(int)))
     return block_names, trial_number
+
+
+def get_coreg_cells(data_dir, sessions):
+    return (
+        load.load_cell_mapper(data_dir)
+        .assign(dummy=1)
+        .pivot(index="new_id", columns="session",values="dummy")
+        .fillna(0)
+        [sessions]
+        .sum(axis=1)
+        .loc[lambda x: x==len(sessions)]
+        .index
+        .values
+        .astype(str)
+    )

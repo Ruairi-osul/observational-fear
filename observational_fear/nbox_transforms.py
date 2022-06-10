@@ -13,7 +13,8 @@ from binit.align import align_around
 from .stats import p_adjust
 from scipy.stats import wilcoxon
 from neurobox.long_transforms import align_to_events, get_closest_event_idx
-
+import scipy
+from .events import get_block_starts
 
 def get_exp_phase(
     df: pd.DataFrame, session: str, time_col: str = "time"
@@ -44,7 +45,7 @@ def summarize_prepost_events(
     df = df.dropna()
     df["_prepost"] = np.where(df["_aligned"] < 0, "pre_event", "post_event")
     df["_trial"] = which_bin_idx(
-        df[time_col], bin_edges=events, time_before=t_before, time_after=t_after,
+        df[time_col].values, bin_edges=events, time_before=t_before, time_after=t_after,
     )
     return (
         df.groupby(["_trial", "_prepost", cell_col], as_index=False)[value_col]

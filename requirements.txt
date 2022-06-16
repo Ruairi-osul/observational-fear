@@ -1,3 +1,8 @@
 pyarrow
 fastparquet
 pandas
+umap-learn
+scikit-learn
+scipy
+seaborn
+pandas

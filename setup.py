@@ -1,7 +1,17 @@
 from setuptools import setup, find_packages
 
 with open("requirements.txt") as f:
-    reqs = f.read().splitlines()
+    reqs = []
+    for line in f:
+        line = line.strip()
+        # let's also ignore empty lines and comments
+        if not line or line.startswith("#"):
+            continue
+        if "https://" in line:
+            tail = line.rsplit("/", 1)[1]
+            tail = tail.split("#")[0]
+            line = tail.replace("@", "==").replace(".git", "")
+        reqs.append(line)
 
 setup(
     name="observational_fear",

@@ -1,5 +1,8 @@
 from setuptools import setup, find_packages
 
+with open("requirements.txt") as f:
+    reqs = f.read().splitlines()
+
 setup(
     name="observational_fear",
     version="0.0.1",

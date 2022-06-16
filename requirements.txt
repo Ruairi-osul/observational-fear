@@ -7,7 +7,7 @@ scipy
 seaborn
 pandas
 binit
-git+https://github.com/Ruairi-osul/neurobox.git
+neurobox @ git+https://github.com/Ruairi-osul/neurobox.git
 tqdm
 matplotlib
 networkx
